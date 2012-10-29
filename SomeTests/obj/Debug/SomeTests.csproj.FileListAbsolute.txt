@@ -1,0 +1,6 @@
+C:\Users\Stoyan\Documents\PingPongGame\SomeTests\bin\Debug\SomeTests.exe.config
+C:\Users\Stoyan\Documents\PingPongGame\SomeTests\bin\Debug\SomeTests.exe
+C:\Users\Stoyan\Documents\PingPongGame\SomeTests\bin\Debug\SomeTests.pdb
+C:\Users\Stoyan\Documents\PingPongGame\SomeTests\obj\Debug\SomeTests.csprojResolveAssemblyReference.cache
+C:\Users\Stoyan\Documents\PingPongGame\SomeTests\obj\Debug\SomeTests.exe
+C:\Users\Stoyan\Documents\PingPongGame\SomeTests\obj\Debug\SomeTests.pdb

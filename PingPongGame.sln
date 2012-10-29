@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingPongGame", "PingPongGame\PingPongGame.csproj", "{410F9863-0325-448D-9990-CED9D8A64BE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomeTests", "SomeTests\SomeTests.csproj", "{6898C39A-1C21-46E9-9634-531CDF715C4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{410F9863-0325-448D-9990-CED9D8A64BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{410F9863-0325-448D-9990-CED9D8A64BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{410F9863-0325-448D-9990-CED9D8A64BE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6898C39A-1C21-46E9-9634-531CDF715C4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6898C39A-1C21-46E9-9634-531CDF715C4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6898C39A-1C21-46E9-9634-531CDF715C4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6898C39A-1C21-46E9-9634-531CDF715C4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
