@@ -1,0 +1,6 @@
+c:\users\stoyan\documents\visual studio 2012\Projects\PingPongGame\PingPongGame\bin\Debug\PingPongGame.exe.config
+c:\users\stoyan\documents\visual studio 2012\Projects\PingPongGame\PingPongGame\obj\Debug\PingPongGame.csprojResolveAssemblyReference.cache
+c:\users\stoyan\documents\visual studio 2012\Projects\PingPongGame\PingPongGame\bin\Debug\PingPongGame.exe
+c:\users\stoyan\documents\visual studio 2012\Projects\PingPongGame\PingPongGame\bin\Debug\PingPongGame.pdb
+c:\users\stoyan\documents\visual studio 2012\Projects\PingPongGame\PingPongGame\obj\Debug\PingPongGame.exe
+c:\users\stoyan\documents\visual studio 2012\Projects\PingPongGame\PingPongGame\obj\Debug\PingPongGame.pdb
