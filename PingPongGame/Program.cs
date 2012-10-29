@@ -11,6 +11,8 @@ namespace PingPongGame
         static void Main(string[] args)
         {
             Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
+
+            Console.WriteLine("Hasmu pere budjandas!");
         }
     }
 }
