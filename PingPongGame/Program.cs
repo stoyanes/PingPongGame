@@ -103,12 +103,71 @@ namespace PingPongGame
 
         public void Move()
         {
+            if (this.CoordX == Console.WindowWidth - 1)
+            {
+                return;
+            }
             if (this.IsUp && this.IsRight)
             {
-                CoordX++;
-                CoordY--;
-                this.Draw();
+                if (this.CoordX <= Console.WindowWidth && this.CoordY > 0)
+                {
+                    CoordX++;
+                    CoordY--;
+                    this.Draw();
+                }
+
+                if (this.CoordY == 0)
+                {
+                    this.IsUp = false;
+                }
             }
+
+            if (!IsUp && IsRight)
+            {
+                if (CoordX < Console.WindowWidth && CoordY < Console.WindowHeight - 1)
+                {
+                    CoordX++;
+                    CoordY++;
+                    this.Draw();
+                }
+
+                if (CoordY == Console.WindowHeight - 1)
+                {
+                    IsUp = true;
+                }
+            }
+
+            if (IsUp && !IsRight)
+            {
+                if (CoordX > 0 && CoordY > 0)
+                {
+                    CoordX--;
+                    CoordY--;
+                    this.Draw();
+                }
+
+                if (CoordY == 0)
+                {
+                    IsUp = false;
+                }
+            }
+
+            if (!IsUp && !IsRight)
+            {
+                if (CoordY < Console.WindowHeight - 1)
+                {
+                    CoordX--;
+                    CoordY++;
+                    this.Draw();
+                }
+
+                if (CoordY == Console.WindowHeight - 1)
+                {
+                    IsUp = true;
+                }
+            }
+
+            
         }
     
     }
@@ -121,8 +180,9 @@ namespace PingPongGame
 
             Player firstPlayer = new Player(10, 5);
             ComputerPlayer secondPlayer = new ComputerPlayer(10, 5);
-            Ball ball = new Ball(Console.WindowWidth / 2, Console.WindowHeight / 2 , true, true); 
-            
+            Ball ball = new Ball(Console.WindowWidth / 2, Console.WindowHeight / 2 , true, false);
+           
+
             while (true)
             {
                 firstPlayer.Draw();
@@ -133,8 +193,7 @@ namespace PingPongGame
                 {
                     firstPlayer.Move(Console.ReadKey().Key);
                 }
-                
-                
+
                 Thread.Sleep(100);
                 Console.Clear();
             }
