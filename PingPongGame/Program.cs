@@ -65,16 +65,54 @@ namespace PingPongGame
         {
             for (int i = 0; i < LenghtOfPad; i++)
             {
-                Console.SetCursorPosition(Console.WindowWidth - 1, CoordOfPad - i);
+                Console.SetCursorPosition(Console.WindowWidth - 1, CoordOfPad + i);
                 Console.Write('|');
             }
         }
 
-        public void Move()
+        public void Move(bool isBallUp)
         {
             int randomNumber = randomGenerator.Next(0, 101);
 
-            // TODO - finish implementation
+            if (randomNumber <= 70)
+            {
+                if (isBallUp)
+                {
+                    if (this.CoordOfPad > 0)
+                    {
+                        CoordOfPad--;
+                        this.Draw();
+                    }
+                }
+                else
+                {
+                    if (this.CoordOfPad + this.LenghtOfPad < Console.WindowHeight - 1)
+                    {
+                        CoordOfPad++;
+                        this.Draw();
+                    }
+                }
+            }
+            else
+            {
+                if (randomNumber % 2 == 0)
+                {
+                    if (this.CoordOfPad - 1 > 0)
+                    {
+                        CoordOfPad--;
+                        this.Draw();
+                    }
+                }
+
+                else
+                {
+                    if (this.CoordOfPad + this.LenghtOfPad < Console.WindowHeight - 1)
+                    {
+                        CoordOfPad++;
+                        this.Draw();
+                    }
+                }
+            }
 
         }
 
@@ -189,10 +227,13 @@ namespace PingPongGame
                 secondPlayer.Draw();
                 ball.Draw();
                 ball.Move();
+                // TODO - implement result
                 if (Console.KeyAvailable)
                 {
                     firstPlayer.Move(Console.ReadKey().Key);
                 }
+
+                secondPlayer.Move(ball.IsUp);
 
                 Thread.Sleep(100);
                 Console.Clear();
