@@ -47,6 +47,18 @@ namespace PingPongGame
             }
         }
 
+        public virtual bool IsPadConrainBall(int ballCoordX, int ballCoordY)
+        {
+            for (int i = CoordOfPad; i < CoordOfPad + LenghtOfPad; i++)
+            {
+                if (i == ballCoordY && ballCoordX == 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 
     public class ComputerPlayer : Player
@@ -106,7 +118,7 @@ namespace PingPongGame
 
                 else
                 {
-                    if (this.CoordOfPad + this.LenghtOfPad < Console.WindowHeight - 1)
+                    if (CoordOfPad + LenghtOfPad < Console.WindowHeight - 1)
                     {
                         CoordOfPad++;
                         this.Draw();
@@ -124,13 +136,16 @@ namespace PingPongGame
         public int CoordY { get; set; }
         public bool IsUp { get; set; }
         public bool IsRight { get; set; }
+        public bool BallIsInField { get; set; }
 
-        public Ball(int coordX, int coordY, bool isU, bool isR)
+        public Ball(int coordX, int coordY, bool isU, bool isR, bool ballInField)
         {
             CoordX = coordX;
             CoordY = coordY;
             IsUp = isU;
             IsRight = isR;
+            BallIsInField = ballInField;
+
         }
 
         public void Draw()
@@ -157,6 +172,10 @@ namespace PingPongGame
                 if (this.CoordY == 0)
                 {
                     this.IsUp = false;
+                }
+                if (this.CoordX == 0)
+                {
+                    IsRight = false;
                 }
             }
 
@@ -188,11 +207,16 @@ namespace PingPongGame
                 {
                     IsUp = false;
                 }
+                //if (CoordX == 0)
+                //{
+                //    BallIsInField = false;
+                //}
+                
             }
 
             if (!IsUp && !IsRight)
             {
-                if (CoordY < Console.WindowHeight - 1)
+                if (CoordY < Console.WindowHeight - 1 && CoordX > 0)
                 {
                     CoordX--;
                     CoordY++;
@@ -203,6 +227,10 @@ namespace PingPongGame
                 {
                     IsUp = true;
                 }
+                //if (CoordX == 0)
+                //{
+                //    BallIsInField = false;
+                //}
             }
 
             
@@ -218,7 +246,7 @@ namespace PingPongGame
 
             Player firstPlayer = new Player(10, 5);
             ComputerPlayer secondPlayer = new ComputerPlayer(10, 5);
-            Ball ball = new Ball(Console.WindowWidth / 2, Console.WindowHeight / 2 , true, false);
+            Ball ball = new Ball(Console.WindowWidth / 2, Console.WindowHeight / 2 , true, false, true);
            
 
             while (true)
@@ -227,14 +255,30 @@ namespace PingPongGame
                 secondPlayer.Draw();
                 ball.Draw();
                 ball.Move();
+                if (!ball.BallIsInField)
+                {
+                    Console.WriteLine("Game Over!");
+                    return;
+                }
                 // TODO - implement result
                 if (Console.KeyAvailable)
                 {
                     firstPlayer.Move(Console.ReadKey().Key);
                 }
 
+                if (firstPlayer.IsPadConrainBall(ball.CoordX, ball.CoordY))
+                {
+                    if (ball.IsUp && !ball.IsRight)
+                    {
+                        ball.IsRight = true;
+                    }
+                    if (!ball.IsUp && !ball.IsRight)
+                    {
+                        ball.IsRight = true;
+                    }
+                }
                 secondPlayer.Move(ball.IsUp);
-
+                
                 Thread.Sleep(100);
                 Console.Clear();
             }
