@@ -51,7 +51,7 @@ namespace PingPongGame
         {
             for (int i = CoordOfPad; i < CoordOfPad + LenghtOfPad; i++)
             {
-                if (i == ballCoordY && ballCoordX == 0)
+                if (i == ballCoordY && ballCoordX == 1)
                 {
                     return true;
                 }
@@ -207,10 +207,10 @@ namespace PingPongGame
                 {
                     IsUp = false;
                 }
-                //if (CoordX == 0)
-                //{
-                //    BallIsInField = false;
-                //}
+                if (CoordX == 0)
+                {
+                    BallIsInField = false;
+                }
                 
             }
 
@@ -227,10 +227,10 @@ namespace PingPongGame
                 {
                     IsUp = true;
                 }
-                //if (CoordX == 0)
-                //{
-                //    BallIsInField = false;
-                //}
+                if (CoordX == 0)
+                {
+                    BallIsInField = false;
+                }
             }
 
             
