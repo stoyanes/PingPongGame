@@ -47,7 +47,7 @@ namespace PingPongGame
             }
         }
 
-        public virtual bool IsPadConrainBall(int ballCoordX, int ballCoordY)
+        public virtual bool IsPadContainsBall(int ballCoordX, int ballCoordY)
         {
             for (int i = CoordOfPad; i < CoordOfPad + LenghtOfPad; i++)
             {
@@ -128,6 +128,19 @@ namespace PingPongGame
 
         }
 
+
+        public override bool IsPadContainsBall(int ballCoordX, int ballCoordY)
+        {
+            for (int i = CoordOfPad; i < CoordOfPad + LenghtOfPad; i++)
+            {
+                if (i == ballCoordY && ballCoordX == Console.WindowWidth - 2)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 
     public class Ball
@@ -158,6 +171,7 @@ namespace PingPongGame
         {
             if (this.CoordX == Console.WindowWidth - 1)
             {
+                this.BallIsInField = false;
                 return;
             }
             if (this.IsUp && this.IsRight)
@@ -246,7 +260,7 @@ namespace PingPongGame
 
             Player firstPlayer = new Player(10, 5);
             ComputerPlayer secondPlayer = new ComputerPlayer(10, 5);
-            Ball ball = new Ball(Console.WindowWidth / 2, Console.WindowHeight / 2 , true, false, true);
+            Ball ball = new Ball(Console.WindowWidth / 2, Console.WindowHeight / 2 , false, true, true);
            
 
             while (true)
@@ -254,10 +268,12 @@ namespace PingPongGame
                 firstPlayer.Draw();
                 secondPlayer.Draw();
                 ball.Draw();
-                ball.Move();
                 if (!ball.BallIsInField)
                 {
+                    Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 2);
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Game Over!");
+                    Console.ReadKey();
                     return;
                 }
                 // TODO - implement result
@@ -266,7 +282,7 @@ namespace PingPongGame
                     firstPlayer.Move(Console.ReadKey().Key);
                 }
 
-                if (firstPlayer.IsPadConrainBall(ball.CoordX, ball.CoordY))
+                if (firstPlayer.IsPadContainsBall(ball.CoordX, ball.CoordY))
                 {
                     if (ball.IsUp && !ball.IsRight)
                     {
@@ -277,8 +293,21 @@ namespace PingPongGame
                         ball.IsRight = true;
                     }
                 }
-                secondPlayer.Move(ball.IsUp);
-                
+
+                if (secondPlayer.IsPadContainsBall(ball.CoordX, ball.CoordY))
+                {
+                    if (ball.IsUp && ball.IsRight)
+                    {
+                        ball.IsRight = false;
+                    }
+                    if (!ball.IsUp && ball.IsRight)
+                    {
+                        ball.IsRight = false;
+                    }
+                }
+
+                secondPlayer.Move(ball.IsUp);  
+                ball.Move();
                 Thread.Sleep(100);
                 Console.Clear();
             }
