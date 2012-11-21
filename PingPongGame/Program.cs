@@ -25,10 +25,13 @@ namespace PingPongGame
                     return;
                 }
                 // TODO - implement result
+
                 if (Console.KeyAvailable)
                 {
                     firstPlayer.Move(Console.ReadKey().Key);
                 }
+
+                ClearConsoleBuffer();
 
                 if (firstPlayer.IsPadContainsBall(ball.CoordX, ball.CoordY))
                 {
@@ -57,6 +60,8 @@ namespace PingPongGame
                 secondPlayer.Move(ball.IsUp);  
                 ball.Move();
                 Thread.Sleep(100);
+
+                
                 Console.Clear();
             }
             
@@ -88,6 +93,14 @@ namespace PingPongGame
                 Console.ForegroundColor = ConsoleColor.White;
                 seconds--;
                 Thread.Sleep(1000);
+            }
+        }
+
+        private static void ClearConsoleBuffer()
+        {
+            while (Console.KeyAvailable)
+            {
+                Console.ReadKey();
             }
         }
     }
